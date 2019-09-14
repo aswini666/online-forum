@@ -1,3 +1,4 @@
+
 <div class="container-login100" style="background-image: url('/assets/bng.png');">
   <div class="wrap-login1000 p-l-55 p-r-55 p-t-65 p-b-54" style="background-color: #e0dbdb;">
     <p id="notice"><%= notice %></p>
@@ -5,7 +6,7 @@
     <%= link_to 'Logout',  destroy_user_session_path, method: :delete %>
 
     <h1>Posts</h1>
-
+<div class="wrap-input100 validate-input">
     <table>
       <thead>
         <tr>
@@ -27,9 +28,10 @@
         <% end %>
       </tbody>
     </table>
-
+</div>
     <br>
-
+ <button class="login100-form-btn">
     <%= link_to 'New Post', new_post_path %>
+  </button>
 </div>
 </div>

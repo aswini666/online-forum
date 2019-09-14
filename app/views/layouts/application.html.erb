@@ -10,8 +10,45 @@
   </head>
 
   <body>
-  <div class="limiter">
-    <%= yield %>
-  </div>
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a href="#" class="navbar-brand">Online Forum</a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav">
+                <a href="/" class="nav-item nav-link active">Home</a>
+                <a href="/posts/new" class="nav-item nav-link">Create Post</a>
+            </div>
+            <% if user_signed_in? %>
+            <div class="navbar-nav ml-auto">
+                <a href="#" class="nav-item nav-link"><%= current_user.email %></a>
+                <a href="<%= destroy_user_session_path %>" data-method="delete" class="nav-item nav-link">Logout</a>
+            </div>
+            <% else %>
+            <div class="navbar-nav ml-auto">
+                <a href="/users/sign_up" class="nav-item nav-link">Sign Up</a>
+                 <a href="/users/sign_in" class="nav-item nav-link">Sign In</a>
+            </div>
+            <% end %>
+        </div>
+    </nav>    
+    <div class="limiter">
+    <span class="success_msgs"> <% if notice %>
+        <p class="alert alert-success">
+            <%= notice %>
+        </p> <% end %> </span>
+
+    <span class="error_msgs"> <% if alert %>
+        <p class="alert alert-success">
+            <%= alert %>
+        </p> <% end %> </span>
+      <%= yield %>
+    </div>
   </body>
 </html>
+
+<script>
+    setTimeout("$('.error_msgs').fadeOut('slow')", 6000)
+    setTimeout("$('.success_msgs').fadeOut('slow')", 3000)
+</script>
